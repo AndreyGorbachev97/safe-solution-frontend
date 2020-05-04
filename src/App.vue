@@ -1,28 +1,34 @@
 <template>
-  <div id="app">
-    <img alt="Vue logo" src="./assets/logo.png">
-    <HelloWorld msg="Welcome to Your Vue.js App"/>
-  </div>
+  <v-app style="background-color: #FAFAFA">
+    <app-bar />
+    <v-content class="content">
+      <router-view />
+    </v-content>
+  </v-app>
 </template>
 
 <script>
-import HelloWorld from './components/HelloWorld.vue'
+import AppBar from "./components/AppBar.vue";
 
 export default {
-  name: 'App',
+  name: "App",
+  sockets: {
+    connect: function() {
+      console.log("socket connected");
+    }
+  },
   components: {
-    HelloWorld
-  }
-}
+    AppBar
+  },
+
+  data: () => ({
+    //
+  })
+};
 </script>
 
-<style>
-#app {
-  font-family: Avenir, Helvetica, Arial, sans-serif;
-  -webkit-font-smoothing: antialiased;
-  -moz-osx-font-smoothing: grayscale;
-  text-align: center;
-  color: #2c3e50;
-  margin-top: 60px;
+<style scoped>
+.content {
+  margin: 2% 4% 0;
 }
 </style>

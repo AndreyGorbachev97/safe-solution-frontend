@@ -1,3 +1,10 @@
+<!-- установка приложения -->
+npm install -g @vue/devtools
+<!-- или -->
+yarn global add @vue/devtools
+<!-- и запустить приложение при помощи команды -->
+vue-devtools
+
 # safe-solution
 
 ## Project setup
