@@ -30,22 +30,22 @@ import { mapActions, mapGetters } from "vuex";
 export default {
   name: "AppBar",
   mounted() {
-    this.getStartData();
+    // this.getStartData();
   },
   computed: mapGetters(["isAuthenticated"]),
   methods: {
     ...mapActions(["logOut", "getUserData"]),
-    async getStartData() {
-      await this.getUserData();
-      if (this.isAuthenticated) {
-        this.$router.push("/home");
-      }
-    },
+    // async getStartData() {
+    //   await this.getUserData();
+    //   if (this.isAuthenticated) {
+    //     this.$router.push("/home");
+    //   }
+    // },
     async exit() {
       await this.logOut();
       this.$store.commit("setIsAuthenticated", false);
-    }
-  }
+    },
+  },
 };
 </script>
 

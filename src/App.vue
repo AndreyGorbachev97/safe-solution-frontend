@@ -12,18 +12,18 @@ import AppBar from "./components/AppBar.vue";
 
 export default {
   name: "App",
-  sockets: {
-    connect: function() {
-      console.log("socket connected");
-    }
-  },
+  // sockets: {
+  //   connect: function() {
+  //     console.log("socket connected");
+  //   }
+  // },
   components: {
-    AppBar
+    AppBar,
   },
 
   data: () => ({
     //
-  })
+  }),
 };
 </script>
 

@@ -51,8 +51,8 @@
 export default {
   name: "CardProfile",
   props: {
-    userData: Object
-  }
+    userData: Object,
+  },
 };
 </script>
 

@@ -3,22 +3,22 @@ import App from "./App.vue";
 import router from "./router";
 import store from "./store";
 import vuetify from "./plugins/vuetify";
-import VueSocketIO from "vue-socket.io";
+// import VueSocketIO from "vue-socket.io";
 // import SocketIO from "socket.io-client";
 
 Vue.config.productionTip = false;
 
-Vue.use(
-  new VueSocketIO({
-    debug: false,
-    connection: "http://localhost:3000",
-    vuex: {
-      store,
-      actionPrefix: "SOCKET_",
-      mutationPrefix: "SOCKET_",
-    }
-  })
-);
+// Vue.use(
+//   new VueSocketIO({
+//     debug: false,
+//     connection: "http://localhost:3000",
+//     vuex: {
+//       store,
+//       actionPrefix: "SOCKET_",
+//       mutationPrefix: "SOCKET_",
+//     }
+//   })
+// );
 
 new Vue({
   router,

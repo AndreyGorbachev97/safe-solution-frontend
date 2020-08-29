@@ -24,6 +24,11 @@ const routes = [
     name: "Tasks",
     component: () => import("../views/TaskPage.vue"),
   },
+  {
+    path: "/process-create",
+    name: "CreateProcess",
+    component: () => import("../views/CreateProcess.vue"),
+  },
 ];
 
 const router = new VueRouter({

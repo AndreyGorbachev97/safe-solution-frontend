@@ -1,5 +1,5 @@
 <template>
-  <v-card class="mx-auto" max-width="344">
+  <v-card style="height: 150px" class="mx-auto" max-width="344">
     <v-card-text>
       <div>Name: Milk</div>
       <div>Status: Done</div>

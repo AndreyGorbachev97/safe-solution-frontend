@@ -20,7 +20,7 @@ const app = axios.create({
 */
 app.interceptors.response.use(
   response => (response), 
-  error => (Promise.reject(error.response.data.err))
+  error => (Promise.reject(error.response.data.err)),
 )
 
 export default app;
