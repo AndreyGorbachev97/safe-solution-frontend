@@ -28,17 +28,18 @@
                 <v-icon>mdi-close</v-icon>
               </v-btn>
             </div>
-            <v-combobox
+            <v-autocomplete
               v-model="stages[i].participant"
               flat
               solo
               hide-details
               hide-selected
-              :items="['aa@g.ru']"
+              deletable-chips
+              :items="colleaguesList"
               label="Add members"
               multiple
               chips
-            ></v-combobox>
+            ></v-autocomplete>
           </v-card-text>
         </v-card>
       </v-timeline-item>
@@ -61,9 +62,12 @@
 </template>
 
 <script>
-import { mapActions } from 'vuex';
+import { mapActions, mapGetters } from "vuex";
 export default {
   name: "CreateProcess",
+  mounted() {
+    this.getColleagues("dstu");
+  },
   data() {
     return {
       operationOr: true,
@@ -75,8 +79,9 @@ export default {
       ],
     };
   },
+  computed: mapGetters(["colleaguesList"]),
   methods: {
-    ...mapActions(['createProcess']),
+    ...mapActions(["createProcess", "getColleagues"]),
     addStage() {
       if (this.stages[this.stages.length - 1].participant[0]) {
         this.stages = [

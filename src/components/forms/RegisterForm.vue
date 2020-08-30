@@ -25,9 +25,8 @@
         required
       ></v-text-field>
       <v-text-field
-        v-model="phone"
-        v-mask="`# ### ###-##-##`"
-        label="Phone"
+        v-model="entity"
+        label="Organization"
         required
       ></v-text-field>
     </v-container>
@@ -70,7 +69,7 @@ export default {
     lazy: false,
     name: "",
     surname: "",
-    phone: "",
+    entity: "",
     email: "",
     password: "",
     repeat: "",
@@ -93,7 +92,7 @@ export default {
         email: this.email,
         password: this.password,
         surname: this.surname,
-        phone: this.phone,
+        entity: this.entity,
       });
       if (this.registration) {
         this.$router.push("/home");
