@@ -26,9 +26,9 @@ export default {
     },
   },
   actions: {
-    // SOCKET_news(ctx, m) {
-    //   console.log("message resevid", m);
-    // },
+    SOCKET_news(ctx, m) {
+      console.log("message resevid", m);
+    },
     async register(context, payload) {
       await app
         .post(`auth/register`, payload)

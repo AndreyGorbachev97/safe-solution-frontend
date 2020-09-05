@@ -46,7 +46,9 @@ export default {
   components: { CardProfile, Processes },
   mounted() {
     this.getStartData();
+    this.message();
   },
+  sockets: {},
   computed: mapGetters(["userData", "isAuthenticated"]),
   data() {
     return {
@@ -63,6 +65,11 @@ export default {
     },
     redirect() {
       this.$router.push("/process-create");
+    },
+    message() {
+      this.$socket.emit("createMessage", {
+        text: "from client",
+      });
     },
   },
 };
