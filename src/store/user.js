@@ -27,7 +27,7 @@ export default {
         .get("user")
         .then((res) => {
           if (res.data.isAuthenticated) {
-            context.commit("setUserData", res.data.user);
+            context.commit("setUserData", res.data);
           }
           context.commit("setIsAuthenticated", res.data.isAuthenticated);
         })

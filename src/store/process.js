@@ -1,4 +1,5 @@
 import app from "../utils/axiosConfig";
+import moment from "moment";
 
 export default {
   state: {
@@ -33,6 +34,7 @@ export default {
           title: "default",
           stages: payload,
           state: "create",
+          date: moment(new Date()).format("MMM Do YY")
         })
         .then((res) => {
           console.log(res.data);

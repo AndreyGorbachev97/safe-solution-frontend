@@ -9,7 +9,7 @@
         large
       >
         <template v-slot:opposite>
-          <span>Stage {{i + 1}}</span>
+          <span>Stage {{ i + 1 }}</span>
         </template>
         <v-card class="elevation-2">
           <v-card-text>
@@ -17,7 +17,7 @@
               <v-switch
                 v-if="i === stages.length - 1"
                 v-model="stages[i].logicalOperation"
-                :label="stages[i].logicalOperation ? 'or': 'and'"
+                :label="stages[i].logicalOperation ? 'or' : 'and'"
               ></v-switch>
               <v-btn
                 class="ml-3"
@@ -49,14 +49,16 @@
         class="ma-2 fix-width"
         :disabled="!stages[0].participant[0]"
         color="primary"
-        @click="createProcess(stages)"
-      >Create process</v-btn>
+        @click="createProcess(modStages)"
+        >Create process</v-btn
+      >
       <v-btn
         class="ma-2 fix-width"
         :disabled="!stages[stages.length - 1].participant[0]"
         @click="addStage"
         color="primary"
-      >Add stage</v-btn>
+        >Add stage</v-btn
+      >
     </div>
   </div>
 </template>
@@ -79,7 +81,17 @@ export default {
       ],
     };
   },
-  computed: mapGetters(["colleaguesList"]),
+  computed: {
+    ...mapGetters(["colleaguesList"]),
+    modStages() {
+      return this.stages.map((el) => ({
+        participant: el.participant.map((el) => ({
+          email: el,
+          vote: "waiting",
+        })),
+      }));
+    },
+  },
   methods: {
     ...mapActions(["createProcess", "getColleagues"]),
     addStage() {

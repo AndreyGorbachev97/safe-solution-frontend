@@ -49,7 +49,15 @@ export default {
     this.message();
   },
   sockets: {},
-  computed: mapGetters(["userData", "isAuthenticated"]),
+  computed: {
+    ...mapGetters(["userData", "isAuthenticated"]),
+    processes() {
+      return this.userData.processes;
+    },
+    solutions() {
+      return this.userData.solutions;
+    },
+  },
   data() {
     return {
       process: [1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12],
