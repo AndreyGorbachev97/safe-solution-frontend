@@ -1,49 +1,36 @@
 <template>
   <v-card height="75vh">
-    <v-container class="head-container">
-      <v-avatar style="margin-left: 20px" color="orange" size="90">
-        <span class="white--text headline">
-          {{
-          userData.name[0].toUpperCase()
-          }}
-        </span>
-      </v-avatar>
-      <div class="name-container">
-        <div>{{ `${userData.name} ${userData.surname}` }}</div>
-      </div>
-    </v-container>
-
-    <v-container class="data">
-      <v-list two-line>
+    <v-card-text class="data">
+      <v-list dense two-line>
         <v-list-item>
-          <v-list-item-icon>
-            <v-icon color="indigo">mdi-phone</v-icon>
-          </v-list-item-icon>
+          <v-list-item-avatar>
+            <v-avatar color="orange" size="40">
+              <span class="white--text">{{userData.name[0].toUpperCase()}}</span>
+            </v-avatar>
+          </v-list-item-avatar>
 
           <v-list-item-content>
-            <v-list-item-title>{{ userData.phone }}</v-list-item-title>
-            <v-list-item-subtitle>Mobile</v-list-item-subtitle>
-          </v-list-item-content>
-
-          <v-list-item-icon>
-            <v-icon>mdi-message-text</v-icon>
-          </v-list-item-icon>
-        </v-list-item>
-
-        <v-divider inset></v-divider>
-
-        <v-list-item>
-          <v-list-item-icon>
-            <v-icon color="indigo">mdi-email</v-icon>
-          </v-list-item-icon>
-
-          <v-list-item-content>
-            <v-list-item-title>{{ userData.email }}</v-list-item-title>
-            <v-list-item-subtitle>Personal</v-list-item-subtitle>
+            <v-list-item-title>{{ `${userData.name} ${userData.surname}` }}</v-list-item-title>
+            <v-list-item-subtitle>{{ `Почта: ${userData.email}` }}</v-list-item-subtitle>
           </v-list-item-content>
         </v-list-item>
       </v-list>
-    </v-container>
+      <v-divider />
+      <v-list nav dense>
+        <v-list-item-group color="primary">
+          <v-list-item link>
+            <v-list-item-content>
+              <v-list-item-title>Мои процессы</v-list-item-title>
+            </v-list-item-content>
+          </v-list-item>
+          <v-list-item link>
+            <v-list-item-content>
+              <v-list-item-title>Мои участия в процессах</v-list-item-title>
+            </v-list-item-content>
+          </v-list-item>
+        </v-list-item-group>
+      </v-list>
+    </v-card-text>
   </v-card>
 </template>
 

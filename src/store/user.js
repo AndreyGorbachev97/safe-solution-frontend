@@ -4,6 +4,7 @@ export default {
   state: {
     user: {},
     isAuthenticated: null,
+    processes: [],
   },
   getters: {
     userData(state) {
@@ -12,10 +13,21 @@ export default {
     isAuthenticated(state) {
       return state.isAuthenticated;
     },
+    userProcesses(state) {
+      return state.processes;
+    },
   },
   mutations: {
     setUserData(state, user) {
-      state.user = user;
+      state.user = {
+        name: user.name,
+        surname: user.surname,
+        email: user.email,
+        entity: user.entity,
+      };
+    },
+    setUserProcesses(state, processes) {
+      state.processes = processes;
     },
     setIsAuthenticated(state, isAuthenticated) {
       state.isAuthenticated = isAuthenticated;
@@ -27,7 +39,9 @@ export default {
         .get("user")
         .then((res) => {
           if (res.data.isAuthenticated) {
+            console.log(res.data);
             context.commit("setUserData", res.data);
+            context.commit("setUserProcesses", res.data.processes.items);
           }
           context.commit("setIsAuthenticated", res.data.isAuthenticated);
         })

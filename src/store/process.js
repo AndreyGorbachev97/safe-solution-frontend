@@ -1,5 +1,6 @@
 import app from "../utils/axiosConfig";
 import moment from "moment";
+moment.locale("ru");
 
 export default {
   state: {
@@ -31,10 +32,10 @@ export default {
     async createProcess(context, payload) {
       app
         .post("/processes/add", {
-          title: "default",
-          stages: payload,
+          title: payload.title,
+          stages: payload.stages,
           state: "create",
-          date: moment(new Date()).format("MMM Do YY")
+          date: moment(new Date()).format("lll"),
         })
         .then((res) => {
           console.log(res.data);
