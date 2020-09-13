@@ -1,18 +1,17 @@
 import Vue from "vue";
 import VueRouter from "vue-router";
-import Home from "../views/Profile.vue";
 
 Vue.use(VueRouter);
 
 const routes = [
   {
     path: "/",
-    redirect: "home",
+    redirect: "processes",
   },
   {
-    path: "/home",
-    name: "Home",
-    component: Home,
+    path: "/processes",
+    name: "ProcessesView",
+    component: () => import("../views/ProcessesView.vue"),
   },
   {
     path: "/auth",

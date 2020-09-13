@@ -85,7 +85,7 @@ export default {
   }),
 
   methods: {
-    ...mapActions(["register"]),
+    ...mapActions(["register", 'checkAuth']),
     async submit() {
       await this.register({
         name: this.name,
@@ -95,7 +95,8 @@ export default {
         entity: this.entity,
       });
       if (this.registration) {
-        this.$router.push("/home");
+        await this.checkAuth();
+        this.$router.push("/");
       }
     },
     reset() {

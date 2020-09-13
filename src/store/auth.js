@@ -5,6 +5,7 @@ export default {
     registration: null,
     login: null,
     userProfile: {},
+    isAuthenticated: false,
   },
   getters: {
     registration(state) {
@@ -16,6 +17,9 @@ export default {
     userProfile(state) {
       return state.userProfile;
     },
+    isAuthenticated(state) {
+      return state.isAuthenticated;
+    },
   },
   mutations: {
     setRegistration(state, registration) {
@@ -23,6 +27,9 @@ export default {
     },
     setLogin(state, login) {
       state.login = login;
+    },
+    setIsAuthenticated(state, isAuthenticated) {
+      state.isAuthenticated = isAuthenticated;
     },
   },
   actions: {
@@ -35,6 +42,16 @@ export default {
         .then((res) => {
           console.log(res.data);
           context.commit("setRegistration", res.data.registration);
+        })
+        .catch((e) => {
+          console.log(e);
+        });
+    },
+    async checkAuth(context) {
+      await app
+        .get("auth/check")
+        .then((res) => {
+          context.commit("setIsAuthenticated", res.data);
         })
         .catch((e) => {
           console.log(e);

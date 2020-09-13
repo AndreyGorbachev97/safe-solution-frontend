@@ -31,11 +31,12 @@ export default {
   }),
 
   methods: {
-    ...mapActions(["logIn"]),
+    ...mapActions(["logIn", 'checkAuth']),
     async submit() {
       await this.logIn({ email: this.email, password: this.password });
       if (this.login) {
-        this.$router.push("/home");
+        await this.checkAuth();
+        this.$router.push("/");
       }
     },
     reset() {
