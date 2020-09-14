@@ -10,13 +10,18 @@ const routes = [
   },
   {
     path: "/processes",
-    name: "ProcessesView",
-    component: () => import("../views/ProcessesView.vue"),
+    name: "ProcessesPage",
+    component: () => import("../views/ProcessesPage.vue"),
+  },
+  {
+    path: "/solutions",
+    name: "SolutionsPage",
+    component: () => import("../views/SolutionsPage.vue"),
   },
   {
     path: "/auth",
     name: "Auth",
-    component: () => import("../views/AuthorizationView.vue"),
+    component: () => import("../views/AuthorizationPage.vue"),
   },
   {
     path: "/tasks",

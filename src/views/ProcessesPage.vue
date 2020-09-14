@@ -36,7 +36,6 @@ export default {
   components: { Process },
   mounted() {
     this.message();
-    this.checkAuth();
     this.getListProcesses();
   },
   sockets: {},
@@ -50,7 +49,7 @@ export default {
     },
   },
   methods: {
-    ...mapActions(["checkAuth", "getListProcesses"]),
+    ...mapActions(["getListProcesses"]),
     redirect() {
       this.$router.push("/process-create");
     },

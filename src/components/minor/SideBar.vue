@@ -23,7 +23,7 @@
               <v-list-item-title>Мои процессы</v-list-item-title>
             </v-list-item-content>
           </v-list-item>
-          <v-list-item link>
+          <v-list-item link to="solutions">
             <v-list-item-content>
               <v-list-item-title>Мои участия в процессах</v-list-item-title>
             </v-list-item-content>
@@ -52,15 +52,9 @@ export default {
   mounted() {
     this.getUserData();
   },
-  computed: mapGetters(["userData", "isAuthenticated"]),
+  computed: mapGetters(["userData"]),
   methods: {
     ...mapActions(["getUserData"]),
-    async getStartData() {
-      await this.getUserData();
-      if (!this.isAuthenticated) {
-        this.$router.push("/auth");
-      }
-    },
   },
 };
 </script>

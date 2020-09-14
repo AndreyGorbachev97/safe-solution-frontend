@@ -19,11 +19,11 @@ import { mapActions, mapGetters } from "vuex";
 export default {
   name: "AppBar",
   mounted() {
-    // this.getStartData();
+    this.getStartData();
   },
   computed: mapGetters(["isAuthenticated"]),
   methods: {
-    ...mapActions(["logOut", "getUserData"]),
+    ...mapActions(["logOut", 'checkAuth']),
     // async getStartData() {
     //   await this.getUserData();
     //   if (this.isAuthenticated) {
@@ -33,6 +33,13 @@ export default {
     async exit() {
       await this.logOut();
       this.$store.commit("setIsAuthenticated", false);
+    },
+    async getStartData() {
+      await this.checkAuth();
+      console.log("test", this.isAuthenticated);
+      if (!this.isAuthenticated) {
+        this.$router.push("/auth");
+      }
     },
   },
 };
