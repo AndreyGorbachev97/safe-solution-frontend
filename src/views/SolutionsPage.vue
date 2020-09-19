@@ -11,7 +11,7 @@
           :key="i"
           class="pr-3 pb-3"
         >
-          <process :process="item" />
+          <solution :solutions="item" />
         </v-col>
       </v-row>
     </v-container>
@@ -20,7 +20,7 @@
 
 <script>
 import { mapGetters, mapActions } from "vuex";
-import Process from "../components/childProfile/Process.vue";
+import Solution from '../components/cards/Solution.vue';
 
 export default {
   name: "SolutionsPage",
@@ -30,7 +30,7 @@ export default {
   computed: mapGetters(["listSolutions"]),
   methods: mapActions(["getListSolutions"]),
   components: {
-    Process,
+    Solution,
   },
 };
 </script>

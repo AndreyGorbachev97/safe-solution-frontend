@@ -29,7 +29,7 @@
 
 <script>
 import { mapGetters, mapActions } from "vuex";
-import Process from "../components/childProfile/Process.vue";
+import Process from "../components/cards/Process.vue";
 
 export default {
   name: "ProcessesView",

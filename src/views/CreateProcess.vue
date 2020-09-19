@@ -1,8 +1,23 @@
 <template>
   <div>
-    <v-form ref="form" v-model="valid">
-      <v-text-field v-model="name" :counter="10" :rules="nameRules" label="Name" required></v-text-field>
+    <v-form ref="form" v-model="valid" class="form-block">
+      <v-text-field
+        hide-details
+        single-line
+        dense
+        filled
+        rounded
+        v-model="name"
+        :rules="nameRules"
+        label="Name"
+        required
+      ></v-text-field>
+      <import-file :addFile="addFile" class="ml-2" />
+      <!-- <v-btn href="http://localhost:3000/processes/download" color="primary">Download</v-btn> -->
     </v-form>
+    <div
+      class="ma-2 text--secondary"
+    >{{file ? 'Документ для согласования: ' + file.get("file").name : ''}}</div>
     <v-timeline reverse>
       <v-timeline-item
         v-for="(process, i) in stages"
@@ -52,7 +67,7 @@
         class="ma-2 fix-width"
         :disabled="!stages[0].participant[0] || !valid"
         color="primary"
-        @click="createProcess({title: name, stages: modStages})"
+        @click="createProcess({title: name, stages: modStages, file})"
       >Create process</v-btn>
       <v-btn
         class="ma-2 fix-width"
@@ -66,19 +81,21 @@
 
 <script>
 import { mapActions, mapGetters } from "vuex";
+import ImportFile from "../components/minor/ImportFile.vue";
 export default {
   name: "CreateProcess",
+  components: {
+    ImportFile,
+  },
   mounted() {
     this.getColleagues("dstu");
   },
   data() {
     return {
+      file: "",
       valid: true,
       name: "",
-      nameRules: [
-        (v) => !!v || "Name is required",
-        (v) => (v && v.length <= 10) || "Name must be less than 10 characters",
-      ],
+      nameRules: [(v) => !!v || "Name is required"],
       operationOr: true,
       stages: [
         {
@@ -101,6 +118,9 @@ export default {
   },
   methods: {
     ...mapActions(["createProcess", "getColleagues"]),
+    addFile(file) {
+      this.file = file;
+    },
     addStage() {
       if (this.stages[this.stages.length - 1].participant[0]) {
         this.stages = [
@@ -131,5 +151,9 @@ export default {
 }
 .timeline-item {
   padding: 0;
+}
+.form-block {
+  display: flex;
+  align-items: center;
 }
 </style>

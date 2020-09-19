@@ -34,7 +34,7 @@
       </div>
     </v-card-text>
     <v-card-actions>
-      <v-btn text color="deep-purple accent-4">Learn More</v-btn>
+      <v-btn text color="primary">Подробнее</v-btn>
     </v-card-actions>
   </v-card>
 </template>

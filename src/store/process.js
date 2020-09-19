@@ -44,9 +44,38 @@ export default {
           console.log(e);
         });
     },
+    async uploadFile(context, payload) {
+      console.log("file....", payload);
+      await app
+        .post("/processes/addFile", payload, {
+          headers: {
+            "Content-Type": "multipart/form-data",
+          },
+        })
+        .then((res) => {
+          console.log(res.data.get("file"));
+        })
+        .catch((e) => {
+          console.log(e);
+        });
+    },
+
     async createProcess(context, payload) {
-      app
+      await app
+        .post("/processes/addFile", payload.file, {
+          headers: {
+            "Content-Type": "multipart/form-data",
+          },
+        })
+        .then((res) => {
+          console.log(res.data.get("file"));
+        })
+        .catch((e) => {
+          console.log(e);
+        });
+        await app
         .post("/processes/add", {
+          fileName: payload.file.get("file").name,
           title: payload.title,
           stages: payload.stages,
           state: "create",

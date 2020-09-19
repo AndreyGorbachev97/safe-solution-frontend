@@ -3,11 +3,11 @@
     <v-app-bar elevation="0" color="primary" dark>
       <v-spacer></v-spacer>
       <v-btn v-if="!isAuthenticated" to="auth" text class="ma-2 white--text">
-        sign in
+        Войти
         <v-icon right>mdi-account</v-icon>
       </v-btn>
       <v-btn v-else to="auth" @click="exit" text class="ma-2 white--text">
-        sign out
+        Выйти
         <v-icon right>mdi-exit-to-app</v-icon>
       </v-btn>
     </v-app-bar>
