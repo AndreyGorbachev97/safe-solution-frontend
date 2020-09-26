@@ -2,7 +2,12 @@
   <v-card style="height: 180px" class="mx-auto" min-width="200" max-width="400">
     <v-list-item two-line>
       <v-list-item-content>
-        <v-list-item-title class="headline">{{process.title}}</v-list-item-title>
+        <v-list-item-title class="headline">
+          {{process.title}}
+          <v-btn :href="`${baseURL}/processes/download?path=${process.pathToDocument}`" icon>
+            <v-icon>mdi-file-document</v-icon>
+          </v-btn>
+        </v-list-item-title>
         <v-list-item-subtitle>{{`Дата создания: ${process.date}`}}</v-list-item-subtitle>
       </v-list-item-content>
     </v-list-item>
@@ -44,6 +49,12 @@ export default {
   name: "Process",
   props: {
     process: Object,
+    download: Function,
+  },
+  data() {
+    return {
+      baseURL: process.env.VUE_APP_ROOT_URL,
+    };
   },
 };
 </script>

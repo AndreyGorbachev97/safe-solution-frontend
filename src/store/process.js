@@ -44,6 +44,19 @@ export default {
           console.log(e);
         });
     },
+    async downloadFile(contex, payload) {
+      await app.get('processes/download', {
+        params: {
+          path: payload,
+        }
+      })
+      .then((res)=> { 
+        console.log(res);
+      })
+      .catch((e) => {
+        console.log(e);
+      })
+    },
     async uploadFile(context, payload) {
       console.log("file....", payload);
       await app

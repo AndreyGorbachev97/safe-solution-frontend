@@ -4,7 +4,7 @@ const baseURL = process.env.VUE_APP_ROOT_URL
 
 const app = axios.create({
     baseURL,
-    withCredentials: true
+    withCredentials: true,
 })
 
 /* 

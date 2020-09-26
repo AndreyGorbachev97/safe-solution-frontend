@@ -20,7 +20,7 @@
           :key="i"
           class="pr-3 pb-3"
         >
-          <process :process="item" />
+          <process :process="item" :download="downloadFile" />
         </v-col>
       </v-row>
     </v-container>
@@ -49,7 +49,7 @@ export default {
     },
   },
   methods: {
-    ...mapActions(["getListProcesses"]),
+    ...mapActions(["getListProcesses", "downloadFile"]),
     redirect() {
       this.$router.push("/process-create");
     },

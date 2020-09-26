@@ -5,9 +5,12 @@
         <v-list-item-title class="title headline">
           <div>{{solutions.title}}</div>
           <v-chip small class="ma-2">
-            Ожидание голоса
+            Ожидание
             <v-icon small right>mdi-timelapse</v-icon>
           </v-chip>
+          <v-btn :href="`${baseURL}/processes/download?path=${solutions.pathToDocument}`" icon>
+            <v-icon>mdi-file-document</v-icon>
+          </v-btn>
         </v-list-item-title>
         <v-list-item-subtitle>{{`Дата создания: ${solutions.date}`}}</v-list-item-subtitle>
       </v-list-item-content>
@@ -23,7 +26,12 @@
 export default {
   name: "Solution",
   props: {
-    solutions: Array,
+    solutions: Object,
+  },
+  data() {
+    return {
+      baseURL: process.env.VUE_APP_ROOT_URL,
+    };
   },
 };
 </script>
