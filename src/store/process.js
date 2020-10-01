@@ -24,7 +24,7 @@ export default {
       app
         .get("/processes")
         .then((res) => {
-          context.commit("setListProcesses", res.data.items);
+          context.commit("setListProcesses", res.data);
         })
         .catch((e) => {
           console.log(e);
@@ -45,17 +45,18 @@ export default {
         });
     },
     async downloadFile(contex, payload) {
-      await app.get('processes/download', {
-        params: {
-          path: payload,
-        }
-      })
-      .then((res)=> { 
-        console.log(res);
-      })
-      .catch((e) => {
-        console.log(e);
-      })
+      await app
+        .get("processes/download", {
+          params: {
+            path: payload,
+          },
+        })
+        .then((res) => {
+          console.log(res);
+        })
+        .catch((e) => {
+          console.log(e);
+        });
     },
     async uploadFile(context, payload) {
       console.log("file....", payload);
@@ -86,7 +87,7 @@ export default {
         .catch((e) => {
           console.log(e);
         });
-        await app
+      await app
         .post("/processes/add", {
           fileName: payload.file.get("file").name,
           title: payload.title,
