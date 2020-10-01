@@ -13,6 +13,15 @@ export default {
     }
   },
   actions: {
+    async addVote(context, payload) {
+      app.post("/solutions", payload)
+      .then((res) => {
+        console.log(res);
+      })
+      .catch((e) => {
+        console.log(e);
+      })
+    },
     async getListSolutions(context) { 
       await app.get('/solutions')
       .then((res) => {

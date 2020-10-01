@@ -15,9 +15,9 @@
       <import-file :addFile="addFile" class="ml-2" />
       <!-- <v-btn href="http://localhost:3000/processes/download" color="primary">Download</v-btn> -->
     </v-form>
-    <div
-      class="ma-2 text--secondary"
-    >{{file ? 'Документ для согласования: ' + file.get("file").name : ''}}</div>
+    <div class="ma-2 text--secondary">
+      {{ file ? "Документ для согласования: " + file.get("file").name : "" }}
+    </div>
     <v-timeline reverse>
       <v-timeline-item
         v-for="(process, i) in stages"
@@ -67,14 +67,16 @@
         class="ma-2 fix-width"
         :disabled="!stages[0].participant[0] || !valid"
         color="primary"
-        @click="createProcess({title: name, stages: modStages, file})"
-      >Create process</v-btn>
+        @click="createProcess({ title: name, stages: modStages, file })"
+        >Create process</v-btn
+      >
       <v-btn
         class="ma-2 fix-width"
         :disabled="!stages[stages.length - 1].participant[0]"
         @click="addStage"
         color="primary"
-      >Add stage</v-btn>
+        >Add stage</v-btn
+      >
     </div>
   </div>
 </template>
@@ -112,6 +114,7 @@ export default {
         participant: el.participant.map((el) => ({
           email: el,
           vote: "waiting",
+          comment: "",
         })),
       }));
     },

@@ -11,7 +11,7 @@
           :key="i"
           class="pr-3 pb-3"
         >
-          <solution :solutions="item" />
+          <solution :solutions="item" :email="userData.email" />
         </v-col>
       </v-row>
     </v-container>
@@ -20,14 +20,14 @@
 
 <script>
 import { mapGetters, mapActions } from "vuex";
-import Solution from '../components/cards/Solution.vue';
+import Solution from "../components/cards/Solution.vue";
 
 export default {
   name: "SolutionsPage",
   mounted() {
     this.getListSolutions();
   },
-  computed: mapGetters(["listSolutions"]),
+  computed: mapGetters(["listSolutions", "userData"]),
   methods: mapActions(["getListSolutions"]),
   components: {
     Solution,
