@@ -37,16 +37,18 @@
                 v-model="stages[i].percentageVotes"
                 hide-details
                 dense
-                label="Мин. % голосов"
+                thumb-label
+                :label="`Мин. % голосов`"
                 :step="100 / stages[i].participant.length"
                 :min="100 / stages[i].participant.length"
                 :max="100"
                 ticks="always"
                 tick-size="4"
-              ></v-slider>
-              <div v-if="stages[i].participant[1]">
-                {{ stages[i].percentageVotes.toFixed(1) }} %
-              </div>
+              >
+                <template v-slot:thumb-label="{ value }">
+                  {{ value.toFixed(1) }}
+                </template>
+              </v-slider>
               <v-btn
                 class="ml-3"
                 @click="deleteStage"
@@ -122,6 +124,7 @@ export default {
     ...mapGetters(["colleaguesList"]),
     modStages() {
       return this.stages.map((el, i) => ({
+        percentageVotes: el.percentageVotes,
         status: i === 0 ? "inWork" : "waiting",
         participant: el.participant.map((el) => ({
           email: el,
