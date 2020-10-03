@@ -32,11 +32,21 @@
         <v-card class="elevation-2">
           <v-card-text>
             <div class="action-btn">
-              <v-switch
-                v-if="i === stages.length - 1"
-                v-model="stages[i].logicalOperation"
-                :label="stages[i].logicalOperation ? 'or' : 'and'"
-              ></v-switch>
+              <v-slider
+                v-if="stages[i].participant[1]"
+                v-model="stages[i].percentageVotes"
+                hide-details
+                dense
+                label="Мин. % голосов"
+                :step="100 / stages[i].participant.length"
+                :min="100 / stages[i].participant.length"
+                :max="100"
+                ticks="always"
+                tick-size="4"
+              ></v-slider>
+              <div v-if="stages[i].participant[1]">
+                {{ stages[i].percentageVotes.toFixed(1) }} %
+              </div>
               <v-btn
                 class="ml-3"
                 @click="deleteStage"
@@ -48,6 +58,7 @@
             </div>
             <v-autocomplete
               v-model="stages[i].participant"
+              v-on:change="minPercentageVotes(i)"
               flat
               solo
               hide-details
@@ -102,7 +113,7 @@ export default {
       stages: [
         {
           participant: [],
-          logicalOperation: true,
+          percentageVotes: 0,
         },
       ],
     };
@@ -110,7 +121,8 @@ export default {
   computed: {
     ...mapGetters(["colleaguesList"]),
     modStages() {
-      return this.stages.map((el) => ({
+      return this.stages.map((el, i) => ({
+        status: i === 0 ? "inWork" : "waiting",
         participant: el.participant.map((el) => ({
           email: el,
           vote: "waiting",
@@ -123,6 +135,10 @@ export default {
     ...mapActions(["createProcess", "getColleagues"]),
     addFile(file) {
       this.file = file;
+    },
+    minPercentageVotes(index) {
+      this.stages[index].percentageVotes =
+        100 / this.stages[index].participant.length;
     },
     addStage() {
       if (this.stages[this.stages.length - 1].participant[0]) {
