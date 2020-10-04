@@ -31,8 +31,9 @@
         </template>
         <v-card class="elevation-2">
           <v-card-text>
-            <div class="action-btn">
+            <div class="action-btn mb-3">
               <v-slider
+                style="width: 100%"
                 v-if="stages[i].participant[1]"
                 v-model="stages[i].percentageVotes"
                 hide-details
@@ -49,6 +50,7 @@
                   {{ value.toFixed(1) }}
                 </template>
               </v-slider>
+              <v-spacer></v-spacer>
               <v-btn
                 class="ml-3"
                 @click="deleteStage"

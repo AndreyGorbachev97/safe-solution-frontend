@@ -1,7 +1,7 @@
 <template>
   <div>
     <v-app-bar elevation="0" color="primary" dark>
-      <v-spacer></v-spacer>
+      <v-spacer />
       <v-btn v-if="!isAuthenticated" to="auth" text class="ma-2 white--text">
         Войти
         <v-icon right>mdi-account</v-icon>
@@ -23,7 +23,7 @@ export default {
   },
   computed: mapGetters(["isAuthenticated"]),
   methods: {
-    ...mapActions(["logOut", 'checkAuth']),
+    ...mapActions(["logOut", "checkAuth"]),
     // async getStartData() {
     //   await this.getUserData();
     //   if (this.isAuthenticated) {

@@ -3,7 +3,14 @@
     <v-container>
       <v-row no-gutters>
         <v-col lg="4" md="6" sm="6" xs="6" class="pr-3 pb-3">
-          <v-card class="mx-auto" min-width="250" max-width="400" outlined @click="redirect">
+          <v-card
+            style="height: 100%"
+            class="mx-auto"
+            min-width="250"
+            max-width="400"
+            outlined
+            @click="redirect"
+          >
             <v-card-text class="add-card">
               <div>
                 <v-icon size="35">mdi-plus</v-icon>
@@ -67,7 +74,7 @@ export default {
   display: flex;
   justify-content: center;
   align-items: center;
-  height: 180px;
+  height: 100%;
   background-color: #e9e9e9;
   cursor: pointer;
 }
