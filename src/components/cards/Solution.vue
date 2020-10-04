@@ -4,21 +4,25 @@
       <v-list-item-content>
         <v-list-item-title class="title headline">
           <div>{{ solutions.title }}</div>
-          <v-chip small class="ma-2">
+          <v-chip
+            :color="status(solutions.stage.status).color"
+            small
+            class="ma-2"
+          >
             Ожидание
             <v-icon small right>mdi-timelapse</v-icon>
           </v-chip>
-          <v-btn
-            :href="`${baseURL}/processes/download?path=${solutions.pathToDocument}`"
-            icon
-          >
-            <v-icon>mdi-file-document</v-icon>
-          </v-btn>
         </v-list-item-title>
         <v-list-item-subtitle>{{
-          `Дата создания: ${solutions.date}`
+          `Создан: ${solutions.date}`
         }}</v-list-item-subtitle>
       </v-list-item-content>
+      <v-btn
+        :href="`${baseURL}/processes/download?path=${solutions.pathToDocument}`"
+        icon
+      >
+        <v-icon>mdi-file-document</v-icon>
+      </v-btn>
     </v-list-item>
     <v-card-text></v-card-text>
     <v-card-actions>
@@ -47,6 +51,25 @@ export default {
     return {
       baseURL: process.env.VUE_APP_ROOT_URL,
     };
+  },
+  methods: {
+    status(s) {
+      if (s === "progress")
+        return {
+          text: "Ожидание",
+          color: "grey lighten-2",
+        };
+      if (s === "За")
+        return {
+          text: "За",
+          color: "success",
+        };
+      if (s === "Против")
+        return {
+          text: "Против",
+          color: "error",
+        };
+    },
   },
 };
 </script>

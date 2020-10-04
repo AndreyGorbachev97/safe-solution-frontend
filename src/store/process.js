@@ -32,7 +32,7 @@ export default {
     },
     async getColleagues(context, payload) {
       app
-        .get("/emtity", {
+        .get("/entity", {
           params: {
             name: payload,
           },

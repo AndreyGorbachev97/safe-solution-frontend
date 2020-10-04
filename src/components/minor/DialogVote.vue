@@ -58,7 +58,7 @@ export default {
       dialog: false,
       vote: "",
       comment: "",
-      itemsVote: ["За", "Против", "Воздержаться"],
+      itemsVote: ["За", "Против"],
     };
   },
   methods: {

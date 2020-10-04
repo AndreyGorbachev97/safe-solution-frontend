@@ -68,7 +68,7 @@
               hide-details
               hide-selected
               deletable-chips
-              :items="colleaguesList"
+              :items="colleaguesList.map((el) => el.email)"
               label="Add members"
               multiple
               chips
@@ -132,6 +132,7 @@ export default {
           email: el,
           vote: "waiting",
           comment: "",
+          userId: this.colleaguesList.find((user) => user.email === el).userId,
         })),
       }));
     },
