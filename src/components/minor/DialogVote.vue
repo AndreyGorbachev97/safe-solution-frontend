@@ -48,6 +48,7 @@ import { mapActions } from "vuex";
 
 export default {
   props: {
+    id: String,
     email: String,
     step: Number,
     processId: String,
@@ -57,18 +58,26 @@ export default {
       valid: true,
       dialog: false,
       vote: "",
+      modVote: '',
       comment: "",
-      itemsVote: ["За", "Против"],
+      itemsVote: ["Согласовать", "Вернуть на доработку"],
     };
+  },
+  watch: {
+    vote() {
+      console.log("test");
+      this.modVote = this.vote === "Согласовать" ? "approve" : "refusal";
+    }
   },
   methods: {
     ...mapActions(["addVote"]),
     changeVote() {
       this.addVote({
+        id: this.id,
         email: this.email,
         step: this.step - 1,
         processId: this.processId,
-        vote: this.vote,
+        vote: this.modVote,
         comment: this.comment,
       });
       this.dialog = false;

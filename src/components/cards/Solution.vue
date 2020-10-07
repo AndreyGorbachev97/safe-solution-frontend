@@ -27,6 +27,7 @@
     <v-card-text></v-card-text>
     <v-card-actions>
       <dialog-vote
+        :id="solutions._id"
         :step="solutions.stage.step"
         :processId="solutions.processId"
         :email="email"
