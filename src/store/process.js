@@ -20,6 +20,9 @@ export default {
     },
   },
   actions: {
+    SOCKET_updateProcess(ctx, m) {
+      console.log("UPDATE: ", m);
+    },
     async getListProcesses(context) {
       app
         .get("/processes")

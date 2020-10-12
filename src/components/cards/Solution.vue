@@ -4,13 +4,9 @@
       <v-list-item-content>
         <v-list-item-title class="title headline">
           <div>{{ solutions.title }}</div>
-          <v-chip
-            :color="status(solutions.stage.status).color"
-            small
-            class="ma-2"
-          >
-            Ожидание
-            <v-icon small right>mdi-timelapse</v-icon>
+          <v-chip :color="status(solutions.vote).color" small class="ma-2">
+            {{ status(solutions.vote).text }}
+            <v-icon small right>{{ status(solutions.vote).icon }}</v-icon>
           </v-chip>
         </v-list-item-title>
         <v-list-item-subtitle>{{
@@ -28,7 +24,7 @@
     <v-card-actions>
       <dialog-vote
         :id="solutions._id"
-        :step="solutions.stage.step"
+        :step="solutions.step"
         :processId="solutions.processId"
         :email="email"
       />
@@ -55,20 +51,23 @@ export default {
   },
   methods: {
     status(s) {
-      if (s === "progress")
+      if (s === "waiting")
         return {
           text: "Ожидание",
           color: "grey lighten-2",
+          icon: "mdi-timelapse",
         };
-      if (s === "За")
+      if (s === "approve")
         return {
-          text: "За",
+          text: "Согласован",
           color: "success",
+          icon: "mdi-checkbox-marked-circle-outline",
         };
-      if (s === "Против")
+      if (s === "refusal")
         return {
-          text: "Против",
+          text: "Возврат",
           color: "error",
+          icon: "mdi-redo-variant",
         };
     },
   },

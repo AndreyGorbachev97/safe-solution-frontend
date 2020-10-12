@@ -24,11 +24,28 @@ import Solution from "../components/cards/Solution.vue";
 
 export default {
   name: "SolutionsPage",
-  mounted() {
-    this.getListSolutions();
+  async mounted() {
+    await this.getListSolutions();
+    console.log('listSolutions', this.listSolutions);
+    this.roomConnect();
   },
   computed: mapGetters(["listSolutions", "userData"]),
-  methods: mapActions(["getListSolutions"]),
+  methods: {
+    ...mapActions(["getListSolutions"]),
+    roomConnect(){
+      const rooms = this.listSolutions
+      .reduce((acc, el) => acc.find((r) => r === el.processId) ? acc : [...acc, el.processId], []);
+      rooms.forEach((el) => {
+        this.$socket.emit('solution', {name: '33', room: el}, data => {
+        if (typeof data === 'string') {
+          console.error(data);
+        } else { 
+          console.log('data:', data);
+        }
+      })
+    })
+    },
+  },
   components: {
     Solution,
   },

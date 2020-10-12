@@ -10,13 +10,16 @@ export default {
   mutations: {
     setListSolotions(state, list) { 
       state.list = list;
-    }
+    },
+    SOCKET_changeSolution(state, message) { 
+      console.log('message:', message);
+    },
   },
   actions: {
     async addVote(context, payload) {
       app.post("/solutions", payload)
       .then((res) => {
-        console.log(res);
+        console.log(res);  
       })
       .catch((e) => {
         console.log(e);

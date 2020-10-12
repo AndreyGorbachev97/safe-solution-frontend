@@ -58,7 +58,7 @@ export default {
       valid: true,
       dialog: false,
       vote: "",
-      modVote: '',
+      modVote: "",
       comment: "",
       itemsVote: ["Согласовать", "Вернуть на доработку"],
     };
@@ -67,7 +67,7 @@ export default {
     vote() {
       console.log("test");
       this.modVote = this.vote === "Согласовать" ? "approve" : "refusal";
-    }
+    },
   },
   methods: {
     ...mapActions(["addVote"]),
@@ -75,11 +75,12 @@ export default {
       this.addVote({
         id: this.id,
         email: this.email,
-        step: this.step - 1,
+        step: this.step,
         processId: this.processId,
         vote: this.modVote,
         comment: this.comment,
       });
+      this.$socket.emit("answersSolutionRoom", { room: this.processId });
       this.dialog = false;
     },
   },
