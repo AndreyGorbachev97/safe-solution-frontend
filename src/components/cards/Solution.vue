@@ -26,6 +26,7 @@
         :id="solutions._id"
         :step="solutions.step"
         :processId="solutions.processId"
+        :author="solutions.author"
         :email="email"
       />
     </v-card-actions>

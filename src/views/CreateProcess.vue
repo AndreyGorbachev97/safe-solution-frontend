@@ -82,7 +82,7 @@
         class="ma-2 fix-width"
         :disabled="!stages[0].participant[0] || !valid"
         color="primary"
-        @click="createProcess({ title: name, stages: modStages, file })"
+        @click="save()"
         >Create process</v-btn
       >
       <v-btn
@@ -123,7 +123,7 @@ export default {
     };
   },
   computed: {
-    ...mapGetters(["colleaguesList"]),
+    ...mapGetters(["colleaguesList", "userData"]),
     modStages() {
       return this.stages.map((el, i) => ({
         percentageVotes: el.percentageVotes,
@@ -139,6 +139,34 @@ export default {
   },
   methods: {
     ...mapActions(["createProcess", "getColleagues"]),
+    async save() {
+      await this.createProcess({
+        title: this.name,
+        stages: this.modStages,
+        file: this.file,
+      });
+      const ids = this.modStages
+        .reduce(
+          (acc, el) => [...acc, ...el.participant.map((p) => p.userId)],
+          []
+        )
+        .reduce((acc, el) => {
+          if (!acc.find((id) => id === el)) acc.push(el);
+          return acc;
+        }, []);
+      this.$socket.emit(
+        "process",
+        { ids, user: this.userData, status: "creacte process" },
+        (data) => {
+          if (typeof data === "string") {
+            console.error(data);
+          } else {
+            console.log("data:", data);
+          }
+        }
+      );
+      this.$router.push("/");
+    },
     addFile(file) {
       this.file = file;
     },

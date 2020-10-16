@@ -52,6 +52,7 @@ export default {
     email: String,
     step: Number,
     processId: String,
+    author: Object,
   },
   data() {
     return {
@@ -71,8 +72,8 @@ export default {
   },
   methods: {
     ...mapActions(["addVote"]),
-    changeVote() {
-      this.addVote({
+    async changeVote() {
+      await this.addVote({
         id: this.id,
         email: this.email,
         step: this.step,
@@ -80,7 +81,7 @@ export default {
         vote: this.modVote,
         comment: this.comment,
       });
-      this.$socket.emit("answersSolutionRoom", { room: this.processId });
+      this.$socket.emit("answersSolutionRoom", { room: this.processId, author: this.author });
       this.dialog = false;
     },
   },

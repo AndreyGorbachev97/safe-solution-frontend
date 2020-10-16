@@ -1,11 +1,16 @@
 <template>
-  <v-app style="background-color: #FAFAFA">
+  <v-app style="background-color: #fafafa">
     <v-content>
       <v-row no-gutters>
         <v-col v-if="isAuthenticated" lg="3" md="4" class="hidden-sm-and-down">
           <side-bar class="sidebar" />
         </v-col>
-        <v-col :lg="isAuthenticated ? 9 : 12" :md="isAuthenticated ? 8 : 12" sm="12" xs="12">
+        <v-col
+          :lg="isAuthenticated ? 9 : 12"
+          :md="isAuthenticated ? 8 : 12"
+          sm="12"
+          xs="12"
+        >
           <app-bar />
           <router-view class="content" />
         </v-col>
@@ -21,17 +26,11 @@ import { mapGetters } from "vuex";
 
 export default {
   name: "App",
-  // sockets: {
-  //   connect: function() {
-  //     console.log("socket connected");
-  //   }
-  // },
   components: {
     SideBar,
     AppBar,
   },
   computed: mapGetters(["isAuthenticated"]),
-
   data: () => ({
     //
   }),
