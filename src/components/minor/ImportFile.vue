@@ -1,7 +1,7 @@
 <template>
   <div>
     <input id="fileInput" type="file" style="display: none" @change="processFiles()" />
-    <v-btn rounded class="ml-2" depressed color="primary" @click="showFileInput()">
+    <v-btn outlined rounded class="ml-2" depressed color="primary" @click="showFileInput()">
       Загрузить документ
       <v-icon right dark>mdi-file-find</v-icon>
     </v-btn>
