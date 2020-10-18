@@ -22,7 +22,7 @@
 <script>
 import SideBar from "./components/minor/SideBar.vue";
 import AppBar from "./components/minor/AppBar.vue";
-import { mapGetters } from "vuex";
+import { mapGetters, mapActions } from "vuex";
 
 export default {
   name: "App",
@@ -30,7 +30,11 @@ export default {
     SideBar,
     AppBar,
   },
+  mounted() {
+    this.getUserData();
+  },
   computed: mapGetters(["isAuthenticated"]),
+  methods: mapActions(["getUserData"]),
   data: () => ({
     //
   }),

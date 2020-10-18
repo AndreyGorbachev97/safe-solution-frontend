@@ -115,6 +115,7 @@ export default {
     ImportFile,
   },
   mounted() {
+    //исправить
     this.getColleagues("dstu");
   },
   data() {

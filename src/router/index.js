@@ -33,6 +33,11 @@ const routes = [
     name: "CreateProcess",
     component: () => import("../views/CreateProcess.vue"),
   },
+  {
+    path: "/collegues",
+    name: "ColleguesPage",
+    component: () => import("../views/ColleaguesPage.vue"),
+  },
 ];
 
 const router = new VueRouter({

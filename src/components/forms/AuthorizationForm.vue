@@ -1,9 +1,21 @@
 <template>
   <v-form ref="form" v-model="valid" :lazy-validation="lazy">
-    <v-text-field v-model="email" :rules="emailRules" label="E-mail" required></v-text-field>
-    <v-text-field v-model="password" :rules="lengthRules" label="password" required></v-text-field>
+    <v-text-field
+      v-model="email"
+      :rules="emailRules"
+      label="E-mail"
+      required
+    ></v-text-field>
+    <v-text-field
+      v-model="password"
+      :rules="lengthRules"
+      label="password"
+      required
+    ></v-text-field>
     <div class="button-block">
-      <v-btn :disabled="!valid" color="primary" class="mr-4" @click="submit">join</v-btn>
+      <v-btn :disabled="!valid" color="primary" class="mr-4" @click="submit"
+        >join</v-btn
+      >
       <v-btn color="primary" class="mr-4" @click="reset">Reset</v-btn>
     </div>
   </v-form>
@@ -21,28 +33,29 @@ export default {
     email: "",
     password: "",
     emailRules: [
-      v => !!v || "E-mail is required",
-      v => /.+@.+\..+/.test(v) || "E-mail must be valid"
+      (v) => !!v || "E-mail is required",
+      (v) => /.+@.+\..+/.test(v) || "E-mail must be valid",
     ],
     lengthRules: [
-      v => !!v || "Name is required",
-      v => (v && v.length >= 8) || "short password"
-    ]
+      (v) => !!v || "Name is required",
+      (v) => (v && v.length >= 8) || "short password",
+    ],
   }),
 
   methods: {
-    ...mapActions(["logIn", 'checkAuth']),
+    ...mapActions(["logIn", "checkAuth", "getUserData"]),
     async submit() {
       await this.logIn({ email: this.email, password: this.password });
       if (this.login) {
         await this.checkAuth();
         this.$router.push("/");
       }
+      this.getUserData();
     },
     reset() {
       this.$refs.form.reset();
-    }
-  }
+    },
+  },
 };
 </script>
 

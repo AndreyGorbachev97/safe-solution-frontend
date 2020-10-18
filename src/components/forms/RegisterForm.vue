@@ -85,17 +85,19 @@ export default {
   }),
 
   methods: {
-    ...mapActions(["register", 'checkAuth']),
+    ...mapActions(["register", "checkAuth", "getUserData"]),
     async submit() {
       await this.register({
         name: this.name,
         email: this.email,
         password: this.password,
         surname: this.surname,
-        entity: this.entity,
+        //исправить на entity: this.entity,
+        entity: "dstu",
       });
       if (this.registration) {
         await this.checkAuth();
+        await this.getUserData();
         this.$router.push("/");
       }
     },

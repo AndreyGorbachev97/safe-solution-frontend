@@ -4,7 +4,7 @@
       <v-row no-gutters>
         <v-col lg="4" md="6" sm="6" xs="6" class="pr-3 pb-3">
           <v-card
-            style="height: 100%"
+            style="height: 100%; min-height: 150px"
             class="mx-auto"
             min-width="250"
             max-width="400"

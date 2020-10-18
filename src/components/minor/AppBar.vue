@@ -2,6 +2,7 @@
   <div>
     <v-app-bar elevation="0" color="primary" dark>
       <v-app-bar-nav-icon
+        v-if="isAuthenticated"
         class="hidden-md-and-up"
         @click.stop="drawer = !drawer"
       ></v-app-bar-nav-icon>
@@ -48,7 +49,7 @@
               <v-list-item-title>Мои участия в процессах</v-list-item-title>
             </v-list-item-content>
           </v-list-item>
-          <v-list-item link>
+          <v-list-item link to="collegues">
             <v-list-item-content>
               <v-list-item-title>Коллеги</v-list-item-title>
             </v-list-item-content>
@@ -70,7 +71,6 @@ export default {
   name: "AppBar",
   mounted() {
     this.getStartData();
-    this.getUserData();
   },
   data() {
     return {
@@ -85,7 +85,7 @@ export default {
   },
   computed: mapGetters(["isAuthenticated", "userData"]),
   methods: {
-    ...mapActions(["logOut", "checkAuth", "getUserData"]),
+    ...mapActions(["logOut", "checkAuth"]),
     // async getStartData() {
     //   await this.getUserData();
     //   if (this.isAuthenticated) {
