@@ -45,17 +45,11 @@
 </template>
 
 <script>
-import { mapGetters, mapActions } from "vuex";
+import { mapGetters } from "vuex";
 
 export default {
   name: "SideBar",
-  mounted() {
-    this.getUserData();
-  },
   computed: mapGetters(["userData"]),
-  methods: {
-    ...mapActions(["getUserData"]),
-  },
 };
 </script>
 
