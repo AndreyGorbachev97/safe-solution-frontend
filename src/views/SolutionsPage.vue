@@ -26,24 +26,36 @@ export default {
   name: "SolutionsPage",
   async mounted() {
     await this.getListSolutions();
-    console.log('listSolutions', this.listSolutions);
+    console.log("listSolutions", this.listSolutions);
     this.roomConnect();
+  },
+  watch: {
+    listSolutions() {
+      console.log("update list");
+      console.log("listSolutions", this.listSolutions);
+    },
+  },
+  update() {
+    console.log("update");
   },
   computed: mapGetters(["listSolutions", "userData"]),
   methods: {
     ...mapActions(["getListSolutions"]),
-    roomConnect(){
-      const rooms = this.listSolutions
-      .reduce((acc, el) => acc.find((r) => r === el.processId) ? acc : [...acc, el.processId], []);
+    roomConnect() {
+      const rooms = this.listSolutions.reduce(
+        (acc, el) =>
+          acc.find((r) => r === el.processId) ? acc : [...acc, el.processId],
+        []
+      );
       rooms.forEach((el) => {
-        this.$socket.emit('solution', {name: '33', room: el}, data => {
-        if (typeof data === 'string') {
-          console.error(data);
-        } else { 
-          console.log('data:', data);
-        }
-      })
-    })
+        this.$socket.emit("solution", { name: "33", room: el }, (data) => {
+          if (typeof data === "string") {
+            console.error(data);
+          } else {
+            console.log("data:", data);
+          }
+        });
+      });
     },
   },
   components: {

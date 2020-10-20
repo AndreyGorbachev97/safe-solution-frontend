@@ -11,12 +11,16 @@ export default {
     setListSolotions(state, list) {
       state.list = list;
     },
+    setSolotion(state, solution) {
+      const index = state.list.findIndex((el) => el._id === solution._id);
+      if(index >= 0) state.list.splice(index, 1, solution);
+    },
   },
   actions: {
     async addVote(context, payload) {
       await app.post("/solutions", payload)
         .then((res) => {
-          console.log(res);
+          context.commit('setSolotion', res.data);
         })
         .catch((e) => {
           console.log(e);
