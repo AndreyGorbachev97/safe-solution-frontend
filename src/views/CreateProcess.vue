@@ -76,7 +76,7 @@
               :input-value="data.selected"
               close
               @click="data.select"
-              @click:close="remove(data.item)"
+              @click:close="deleteItem(i, data.item)"
             >
               <v-avatar style="color: white" color="primary" left>
                 {{ data.item[0].toUpperCase() }}
@@ -192,6 +192,10 @@ export default {
           { participant: [], logicalOperation: true },
         ];
       }
+    },
+    deleteItem(i, item) {
+      const index = this.stages[i].participant.indexOf(item);
+      if (index >= 0) this.stages[i].participant.splice(index, 1);
     },
     deleteStage() {
       this.stages.splice(-1);

@@ -20,6 +20,17 @@ export default {
     },
   },
   actions: {
+    SOCKET_changeProcess(context, message) {
+      console.log('process:', message);
+      app
+        .get("/processes")
+        .then((res) => {
+          context.commit("setListProcesses", res.data);
+        })
+        .catch((e) => {
+          console.log(e);
+        });
+    },
     async getListProcesses(context) {
       app
         .get("/processes")

@@ -35,7 +35,7 @@ export default {
           console.log(e);
         })
     },
-    SOCKET_changeProcess(context, message) {
+    SOCKET_addedProcess(context, message) {
       console.log('process:', message);
       console.log(`Пользователь ${message.user.name} ${message.user.surname} создал процесс согласования в котором вы являетесь участником`);
       app.get('/solutions')
