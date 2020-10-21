@@ -26,17 +26,24 @@ export default {
   name: "SolutionsPage",
   async mounted() {
     await this.getListSolutions();
-    console.log("listSolutions", this.listSolutions);
     this.roomConnect();
+    this.lengthList = this.listSolutions.length;
   },
   watch: {
     listSolutions() {
-      console.log("update list");
-      console.log("listSolutions", this.listSolutions);
+      if (this.lengthList !== this.listSolutions.length) {
+        this.roomConnect();
+        this.lengthList = this.listSolutions.length;
+      }
     },
   },
   update() {
     console.log("update");
+  },
+  data() { 
+    return { 
+      lengthList: 0, 
+    }
   },
   computed: mapGetters(["listSolutions", "userData"]),
   methods: {
