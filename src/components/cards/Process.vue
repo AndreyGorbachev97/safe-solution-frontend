@@ -22,12 +22,13 @@
       <stepper :stages="process.stages" />
     </v-card-text>
     <v-card-actions>
-      <v-btn text color="primary">Подробнее</v-btn>
+      <v-btn text :to="`/processes/${process._id}`" color="primary">Подробнее</v-btn>
     </v-card-actions>
   </v-card>
 </template>
 
 <script>
+import { mapActions } from "vuex";
 import Stepper from "../minor/Stepper.vue";
 export default {
   name: "Process",
@@ -35,13 +36,16 @@ export default {
     process: Object,
     download: Function,
   },
+  components: {
+    Stepper,
+  },
   data() {
     return {
       baseURL: process.env.VUE_APP_ROOT_URL,
     };
   },
-  components: {
-    Stepper,
+  methods: {
+    ...mapActions(["getProcess"]),
   },
 };
 </script>

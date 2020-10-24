@@ -14,6 +14,11 @@ const routes = [
     component: () => import("../views/ProcessesPage.vue"),
   },
   {
+    path: "/processes/:id",
+    name: "DetailProcessPage",
+    component: () => import("../views/DetailProcessPage.vue"),
+  },
+  {
     path: "/solutions",
     name: "SolutionsPage",
     component: () => import("../views/SolutionsPage.vue"),

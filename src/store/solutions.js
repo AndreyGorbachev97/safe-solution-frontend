@@ -8,10 +8,10 @@ export default {
     listSolutions: (state) => state.list,
   },
   mutations: {
-    setListSolotions(state, list) {
+    setListSolutions(state, list) {
       state.list = list;
     },
-    setSolotion(state, solution) {
+    setSolution(state, solution) {
       const index = state.list.findIndex((el) => el._id === solution._id);
       if(index >= 0) state.list.splice(index, 1, solution);
     },
@@ -20,7 +20,7 @@ export default {
     async addVote(context, payload) {
       await app.post("/solutions", payload)
         .then((res) => {
-          context.commit('setSolotion', res.data);
+          context.commit('setSolution', res.data);
         })
         .catch((e) => {
           console.log(e);
@@ -29,7 +29,7 @@ export default {
     async getListSolutions(context) {
       await app.get('/solutions')
         .then((res) => {
-          context.commit('setListSolotions', res.data);
+          context.commit('setListSolutions', res.data);
         })
         .catch((e) => {
           console.log(e);
@@ -40,7 +40,7 @@ export default {
       console.log(`Пользователь ${message.user.name} ${message.user.surname} создал процесс согласования в котором вы являетесь участником`);
       app.get('/solutions')
         .then((res) => {
-          context.commit('setListSolotions', res.data);
+          context.commit('setListSolutions', res.data);
         })
         .catch((e) => {
           console.log(e);
@@ -50,7 +50,7 @@ export default {
       console.log('message:', message);
       app.get('/solutions')
         .then((res) => {
-          context.commit('setListSolotions', res.data);
+          context.commit('setListSolutions', res.data);
         })
         .catch((e) => {
           console.log(e);

@@ -65,11 +65,24 @@
           hide-details
           hide-selected
           deletable-chips
-          :items="colleaguesList.map((el) => el.email)"
+          :items="colleaguesList"
+          :item-text="(obj) => `${obj.name} ${obj.surname} ${obj.email}`"
+          :item-value="(obj) => obj"
           label="Add members"
           multiple
           chips
         >
+          <template v-slot:item="data">
+            <v-avatar size="40" class="mr-2" style="color: white" color="primary" left>
+              {{ data.item.name[0].toUpperCase() }}
+            </v-avatar>
+            <v-list-item-content>
+              <v-list-item-title>
+                {{`${data.item.name} ${data.item.surname}`}}
+              </v-list-item-title>
+              <v-list-item-subtitle>{{ data.item.email }}</v-list-item-subtitle>
+            </v-list-item-content>
+          </template>
           <template v-slot:selection="data">
             <v-chip
               v-bind="data.attrs"
@@ -79,9 +92,9 @@
               @click:close="deleteItem(i, data.item)"
             >
               <v-avatar style="color: white" color="primary" left>
-                {{ data.item[0].toUpperCase() }}
+                {{ data.item.email[0].toUpperCase() }}
               </v-avatar>
-              {{ data.item }}
+              {{ `${data.item.name} ${data.item.surname}` }}
             </v-chip>
           </template>
         </v-autocomplete>
@@ -140,10 +153,12 @@ export default {
         percentageVotes: el.percentageVotes,
         status: i === 0 ? "inWork" : "waiting",
         participant: el.participant.map((el) => ({
-          email: el,
+          email: el.email,
+          name: el.name,
+          surname: el.surname,
           vote: "waiting",
           comment: "",
-          userId: this.colleaguesList.find((user) => user.email === el).userId,
+          userId: this.colleaguesList.find((user) => user.email === el.email).userId,
         })),
       }));
     },

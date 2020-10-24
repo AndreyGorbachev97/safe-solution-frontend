@@ -18,22 +18,22 @@
       <v-divider />
       <v-list nav dense>
         <v-list-item-group color="primary">
-          <v-list-item link to="processes">
+          <v-list-item link to="/processes">
             <v-list-item-content>
               <v-list-item-title>Мои процессы</v-list-item-title>
             </v-list-item-content>
           </v-list-item>
-          <v-list-item link to="solutions">
+          <v-list-item link to="/solutions">
             <v-list-item-content>
               <v-list-item-title>Мои участия в процессах</v-list-item-title>
             </v-list-item-content>
           </v-list-item>
-          <v-list-item link to="collegues">
+          <v-list-item link to="/collegues">
             <v-list-item-content>
               <v-list-item-title>Коллеги</v-list-item-title>
             </v-list-item-content>
           </v-list-item>
-          <v-list-item link to="process-create">
+          <v-list-item link to="/process-create">
             <v-list-item-content>
               <v-list-item-title>Создание процесса</v-list-item-title>
             </v-list-item-content>

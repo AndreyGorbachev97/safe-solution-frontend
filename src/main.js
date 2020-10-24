@@ -6,11 +6,13 @@ import vuetify from "./plugins/vuetify";
 import VueSocketIO from "vue-socket.io";
 // import SocketIO from "socket.io-client";
 Vue.config.productionTip = false;
+const baseURL = process.env.VUE_APP_ROOT_URL
+
 
 Vue.use(
   new VueSocketIO({
     debug: false,
-    connection: "http://localhost:3000",
+    connection: `${baseURL}`,
     vuex: {
       store,
       actionPrefix: "SOCKET_",

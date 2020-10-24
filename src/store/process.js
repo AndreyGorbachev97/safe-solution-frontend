@@ -6,10 +6,12 @@ export default {
   state: {
     colleagues: [],
     listProcesses: [],
+    currentProcess: {},
   },
   getters: {
     colleaguesList: (state) => state.colleagues,
     listProcesses: (state) => state.listProcesses,
+    currentProcess: (state) => state.currentProcess,
   },
   mutations: {
     setColleagues(state, colleagues) {
@@ -17,6 +19,9 @@ export default {
     },
     setListProcesses(state, processes) {
       state.listProcesses = processes;
+    },
+    setProcess(state, process) {
+      state.currentProcess = process;
     },
   },
   actions: {
@@ -30,6 +35,15 @@ export default {
         .catch((e) => {
           console.log(e);
         });
+    },
+    async getProcess(context, id) {
+      await app.get(`/processes/${id}`)
+        .then((res) => {
+          context.commit("setProcess", res.data);
+        })
+        .catch((e) => {
+          console.error(e);
+        })
     },
     async getListProcesses(context) {
       app
