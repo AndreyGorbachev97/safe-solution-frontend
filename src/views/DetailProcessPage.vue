@@ -1,13 +1,23 @@
 <template>
   <div class="stages-block" style="margin: 5%">
     <div class="line"></div>
-    <div class="stages-block" v-for="(stage, i) in currentProcess.stages" :key="i">
+    <div
+      class="stages-block"
+      v-for="(stage, i) in currentProcess.stages"
+      :key="i"
+    >
+      <div class="ma-2">Этап {{ i + 1 }}</div>
       <div class="voice-card">
-        <div class="mb-5 participant" v-for="(item, j) in stage.participant" :key="j">
-          <div style="background-color: hotpink;">
-            {{ item.email }}
-          </div>
-          <v-divider style="width: 20px" v-if="j !== stage.participant.length - 1"/>
+        <div
+          class="mb-5 participant"
+          v-for="(item, j) in stage.participant"
+          :key="j"
+        >
+          <detail-info-vote :item="item" />
+          <v-divider
+            style="width: 20px"
+            v-if="j !== stage.participant.length - 1"
+          />
         </div>
       </div>
     </div>
@@ -16,9 +26,13 @@
 
 <script>
 import { mapGetters, mapActions } from "vuex";
+import DetailInfoVote from "../components/minor/DetailInfoVote.vue";
 
 export default {
   name: "DetailProcessPage",
+  components: {
+    DetailInfoVote,
+  },
   mounted() {
     this.getProcess(this.$router.history.current.params.id);
   },
@@ -38,7 +52,7 @@ export default {
   flex-direction: column;
   align-items: center;
 }
-.voice-card { 
+.voice-card {
   display: flex;
   align-items: center;
 }

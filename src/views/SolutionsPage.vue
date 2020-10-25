@@ -11,7 +11,12 @@
           :key="i"
           class="pr-3 pb-3"
         >
-          <solution :solutions="item" :email="userData.email" />
+          <solution
+            :solutions="item"
+            :email="userData.email"
+            :name="userData.name"
+            :surname="userData.surname"
+          />
         </v-col>
       </v-row>
     </v-container>
@@ -40,10 +45,10 @@ export default {
   update() {
     console.log("update");
   },
-  data() { 
-    return { 
-      lengthList: 0, 
-    }
+  data() {
+    return {
+      lengthList: 0,
+    };
   },
   computed: mapGetters(["listSolutions", "userData"]),
   methods: {

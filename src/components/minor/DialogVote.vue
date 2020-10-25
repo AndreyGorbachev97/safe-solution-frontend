@@ -50,6 +50,8 @@ export default {
   props: {
     id: String,
     email: String,
+    name: String,
+    surname: String,
     step: Number,
     processId: String,
     author: Object,
@@ -76,6 +78,8 @@ export default {
       await this.addVote({
         id: this.id,
         email: this.email,
+        name: this.name,
+        surname: this.surname,
         step: this.step,
         processId: this.processId,
         vote: this.modVote,

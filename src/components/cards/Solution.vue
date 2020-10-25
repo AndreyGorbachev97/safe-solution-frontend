@@ -28,6 +28,8 @@
         :processId="solutions.processId"
         :author="solutions.author"
         :email="email"
+        :name="name"
+        :surname="surname"
       />
     </v-card-actions>
   </v-card>
@@ -41,6 +43,8 @@ export default {
   props: {
     solutions: Object,
     email: String,
+    name: String,
+    surname: String,
   },
   components: {
     DialogVote,

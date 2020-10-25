@@ -25,7 +25,7 @@
           </v-list-item>
           <v-list-item link to="/solutions">
             <v-list-item-content>
-              <v-list-item-title>Мои участия в процессах</v-list-item-title>
+              <v-list-item-title>Документы требующие оброботки</v-list-item-title>
             </v-list-item-content>
           </v-list-item>
           <v-list-item link to="/collegues">
