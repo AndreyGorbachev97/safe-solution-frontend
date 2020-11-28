@@ -11,18 +11,29 @@
           `Создан: ${process.date}`
         }}</v-list-item-subtitle>
       </v-list-item-content>
-      <v-btn
-        :href="`${baseURL}/processes/download?path=${process.pathToDocument}`"
-        icon
-      >
-        <v-icon>mdi-file-document</v-icon>
-      </v-btn>
     </v-list-item>
     <v-card-text>
       <stepper :stages="process.stages" />
     </v-card-text>
     <v-card-actions>
-      <v-btn text :to="`/processes/${process._id}`" color="primary">Подробнее</v-btn>
+      <v-btn text :to="`/processes/${process._id}`" color="primary"
+        >Подробнее</v-btn
+      >
+      <v-spacer />
+      <v-btn
+        :href="`${baseURL}/processes/download?path=${process.pathToDocument}`"
+        icon
+      >
+        <v-icon>mdi-file-eye</v-icon>
+      </v-btn>
+      <v-btn
+        v-if="process.stages.slice(-1)[0].status === 'success'"
+        target="_blank"
+        :href="`${baseURL}/processes/download?path=${process.pathToDocument}`"
+        icon
+      >
+        <v-icon>mdi-file-download</v-icon>
+      </v-btn>
     </v-card-actions>
   </v-card>
 </template>

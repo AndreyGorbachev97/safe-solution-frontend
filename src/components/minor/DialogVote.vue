@@ -1,8 +1,13 @@
 <template>
   <div>
-    <v-btn color="primary" text dark @click.stop="dialog = true"
-      >Голосовать</v-btn
+    <v-btn
+      color="primary"
+      :disabled="status !== 'waiting'"
+      text
+      @click.stop="dialog = true"
     >
+      Обработать
+    </v-btn>
 
     <v-dialog v-model="dialog" max-width="490">
       <v-card>
@@ -45,9 +50,11 @@
 
 <script>
 import { mapActions } from "vuex";
+import moment from "moment";
 
 export default {
   props: {
+    status: String,
     id: String,
     email: String,
     name: String,
@@ -83,9 +90,13 @@ export default {
         step: this.step,
         processId: this.processId,
         vote: this.modVote,
+        dateVote: moment(new Date()).format("lll"),
         comment: this.comment,
       });
-      this.$socket.emit("answersSolutionRoom", { room: this.processId, author: this.author });
+      this.$socket.emit("answersSolutionRoom", {
+        room: this.processId,
+        author: this.author,
+      });
       this.dialog = false;
     },
   },
