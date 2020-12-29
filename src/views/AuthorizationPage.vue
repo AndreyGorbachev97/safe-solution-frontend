@@ -6,8 +6,8 @@
           <v-img :src="require('../assets/auth.svg')" height="200px" contain></v-img>
           <v-card-text>
             <v-tabs fixed-tabs>
-              <v-tab>Log in</v-tab>
-              <v-tab>sign up</v-tab>
+              <v-tab>Авторизация</v-tab>
+              <v-tab>Регистрация</v-tab>
               <v-tab-item>
                 <authorization-form />
               </v-tab-item>

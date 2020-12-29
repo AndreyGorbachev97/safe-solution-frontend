@@ -1,5 +1,5 @@
 <template>
-  <v-card class="mx-auto" min-width="200" max-width="400">
+  <v-card class="mx-auto" min-width="200">
     <v-list-item two-line>
       <v-list-item-content>
         <v-list-item-title class="headline">
@@ -29,7 +29,7 @@
       <v-btn
         v-if="process.stages.slice(-1)[0].status === 'success'"
         target="_blank"
-        :href="`${baseURL}/processes/download?path=${process.pathToDocument}`"
+        :href="`${baseURL}/processes/download?path=${process.pathToSheet}`"
         icon
       >
         <v-icon>mdi-file-download</v-icon>

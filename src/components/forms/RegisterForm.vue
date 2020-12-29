@@ -5,13 +5,13 @@
         class="mr-2"
         v-model="name"
         :rules="requiredRules"
-        label="Name"
+        label="Имя"
         required
       ></v-text-field>
       <v-text-field
         v-model="surname"
         :rules="requiredRules"
-        label="Surname"
+        label="Фамилия"
         required
       ></v-text-field>
     </v-container>
@@ -21,12 +21,12 @@
         class="mr-2"
         v-model="email"
         :rules="emailRules"
-        label="E-mail"
+        label="Почта"
         required
       ></v-text-field>
       <v-text-field
         v-model="entity"
-        label="Organization"
+        label="Организация"
         required
       ></v-text-field>
     </v-container>
@@ -36,22 +36,22 @@
         class="mr-2"
         v-model="password"
         :rules="lengthRules"
-        label="password"
+        label="Пароль"
         required
       ></v-text-field>
       <v-text-field
         v-model="repeat"
         :rules="lengthRules"
-        label="repeat password"
+        label="Повторите пароль"
         required
       ></v-text-field>
     </v-container>
 
     <div class="button-block">
       <v-btn :disabled="!valid" color="primary" class="mr-4" @click="submit"
-        >join</v-btn
+        >Далее</v-btn
       >
-      <v-btn color="primary" class="mr-4" @click="reset">Reset</v-btn>
+      <v-btn color="primary" class="mr-4" @click="reset">Сброс</v-btn>
     </div>
   </v-form>
 </template>
@@ -74,14 +74,14 @@ export default {
     password: "",
     repeat: "",
     emailRules: [
-      (v) => !!v || "is required",
-      (v) => /.+@.+\..+/.test(v) || "E-mail must be valid",
+      (v) => !!v || "Обязательное поле",
+      (v) => /.+@.+\..+/.test(v) || "Не верный формат почты",
     ],
     lengthRules: [
-      (v) => !!v || "is required",
-      (v) => (v && v.length >= 8) || "short password",
+      (v) => !!v || "Обязательное поле",
+      (v) => (v && v.length >= 8) || "Короткий пароль",
     ],
-    requiredRules: [(v) => !!v || "is required"],
+    requiredRules: [(v) => !!v || "Обязательное поле"],
   }),
 
   methods: {

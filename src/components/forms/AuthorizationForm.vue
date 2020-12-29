@@ -3,20 +3,20 @@
     <v-text-field
       v-model="email"
       :rules="emailRules"
-      label="E-mail"
+      label="Почта"
       required
     ></v-text-field>
     <v-text-field
       v-model="password"
       :rules="lengthRules"
-      label="password"
+      label="Пароль"
       required
     ></v-text-field>
     <div class="button-block">
       <v-btn :disabled="!valid" color="primary" class="mr-4" @click="submit"
-        >join</v-btn
+        >Далее</v-btn
       >
-      <v-btn color="primary" class="mr-4" @click="reset">Reset</v-btn>
+      <v-btn color="primary" class="mr-4" @click="reset">Сброс</v-btn>
     </div>
   </v-form>
 </template>
@@ -33,12 +33,12 @@ export default {
     email: "",
     password: "",
     emailRules: [
-      (v) => !!v || "E-mail is required",
-      (v) => /.+@.+\..+/.test(v) || "E-mail must be valid",
+      (v) => !!v || "Обязательное поле",
+      (v) => /.+@.+\..+/.test(v) || "Не верный формат почты",
     ],
     lengthRules: [
-      (v) => !!v || "Name is required",
-      (v) => (v && v.length >= 8) || "short password",
+      (v) => !!v || "Обязательное поле",
+      (v) => (v && v.length >= 8) || "Короткий пароль",
     ],
   }),
 

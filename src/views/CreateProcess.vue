@@ -73,12 +73,18 @@
           chips
         >
           <template v-slot:item="data">
-            <v-avatar size="40" class="mr-2" style="color: white" color="primary" left>
+            <v-avatar
+              size="40"
+              class="mr-2"
+              style="color: white"
+              color="primary"
+              left
+            >
               {{ data.item.name[0].toUpperCase() }}
             </v-avatar>
             <v-list-item-content>
               <v-list-item-title>
-                {{`${data.item.name} ${data.item.surname}`}}
+                {{ `${data.item.name} ${data.item.surname}` }}
               </v-list-item-title>
               <v-list-item-subtitle>{{ data.item.email }}</v-list-item-subtitle>
             </v-list-item-content>
@@ -104,6 +110,7 @@
       <v-btn
         class="ma-2 fix-width"
         :disabled="!stages[0].participant[0] || !valid || !file"
+        small
         color="primary"
         @click="save()"
         >Создать процесс</v-btn
@@ -112,6 +119,7 @@
         class="ma-2 fix-width"
         :disabled="!stages[stages.length - 1].participant[0]"
         @click="addStage"
+        small
         color="primary"
         >Добавить этап</v-btn
       >
@@ -158,7 +166,8 @@ export default {
           surname: el.surname,
           vote: "waiting",
           comment: "",
-          userId: this.colleaguesList.find((user) => user.email === el.email).userId,
+          userId: this.colleaguesList.find((user) => user.email === el.email)
+            .userId,
         })),
       }));
     },
@@ -230,9 +239,6 @@ export default {
   display: flex;
   justify-content: flex-end;
 }
-/* .fix-width {
-  width: 160px;
-} */
 .timeline-item {
   padding: 0;
 }

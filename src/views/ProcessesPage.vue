@@ -7,7 +7,6 @@
             style="height: 100%; min-height: 150px"
             class="mx-auto"
             min-width="250"
-            max-width="400"
             outlined
             @click="redirect"
           >
@@ -75,11 +74,11 @@ export default {
   justify-content: center;
   align-items: center;
   height: 100%;
-  background-color: #e9e9e9;
+  background-color: rgba(100, 100, 100, 0.3);
   cursor: pointer;
 }
 .add-card:hover {
-  background-color: #d8d8d8;
+  background-color: rgba(100, 100, 100, 0.4);
 }
 .card-profile {
   position: sticky;
