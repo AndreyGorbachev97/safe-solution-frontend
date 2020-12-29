@@ -21,15 +21,23 @@ export default {
     SideBar,
   },
   mounted() {
-    this.getUserData();
+    this.getUser();
   },
   computed: {
-    ...mapGetters(["isAuthenticated"]),
+    ...mapGetters(["userData"]),
     theme() {
       return this.$vuetify.theme.dark ? "dark" : "light";
     },
   },
-  methods: mapActions(["getUserData"]),
+  methods: {
+    ...mapActions(["getUserData"]),
+    async getUser() {
+      await this.getUserData();
+      if (!this.userData.email) {
+        this.$router.push("/auth");
+      }
+    },
+  },
   data: () => ({
     //
   }),

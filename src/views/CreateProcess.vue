@@ -1,5 +1,5 @@
 <template>
-  <div>
+  <div v-if="userData.email">
     <v-form ref="form" v-model="valid" class="form-block">
       <v-text-field
         hide-details

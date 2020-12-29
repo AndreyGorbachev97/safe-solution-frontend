@@ -1,5 +1,5 @@
 <template>
-  <div class="home">
+  <div class="home" v-if="userData.email">
     <v-container>
       <v-row no-gutters>
         <v-col lg="4" md="6" sm="6" xs="6" class="pr-3 pb-3">
@@ -46,7 +46,7 @@ export default {
   },
   sockets: {},
   computed: {
-    ...mapGetters(["userData", "isAuthenticated", "listProcesses"]),
+    ...mapGetters(["userData", "listProcesses"]),
     processes() {
       return this.userData.processes;
     },

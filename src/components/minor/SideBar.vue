@@ -6,16 +6,17 @@
         @click.stop="openDrawer"
       ></v-app-bar-nav-icon>
       <v-spacer />
-      <v-btn v-if="!isAuthenticated" to="auth" text class="ma-2 white--text">
+      <v-btn v-if="!userData.email" to="auth" text class="ma-2 white--text">
         Войти
         <v-icon right>mdi-account</v-icon>
       </v-btn>
-      <v-btn v-else to="auth" @click="exit" text class="ma-2 white--text">
+      <v-btn v-else @click="exit" text class="ma-2 white--text">
         Выйти
         <v-icon right>mdi-exit-to-app</v-icon>
       </v-btn>
     </v-app-bar>
     <v-navigation-drawer
+      v-if="userData.email"
       :app="!minDrawer"
       :permanent="!minDrawer"
       :fixed="minDrawer"
@@ -118,7 +119,7 @@
 </template>
 
 <script>
-import { mapGetters } from "vuex";
+import { mapGetters, mapActions } from "vuex";
 import Tooltip from "./Tooltip";
 
 export default {
@@ -145,6 +146,7 @@ export default {
     },
   },
   methods: {
+    ...mapActions(["logOut", "getUserData"]),
     changeTheme() {
       const theme = !this.$vuetify.theme.dark;
       this.$vuetify.theme.dark = theme;
@@ -158,6 +160,11 @@ export default {
       const drawer = !this.isOpen;
       this.isOpen = drawer;
       localStorage.setItem("drawer", JSON.stringify(drawer));
+    },
+    async exit() {
+      await this.logOut();
+      await this.getUserData();
+      this.$router.push("/auth");
     },
   },
 };

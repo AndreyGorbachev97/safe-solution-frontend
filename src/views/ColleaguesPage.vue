@@ -1,5 +1,6 @@
 <template>
   <v-data-table
+    v-if="userData.email"
     class="ma-3"
     :headers="headers"
     :items="colleaguesList"
@@ -16,20 +17,20 @@ export default {
     //исправить
     this.getColleagues("dstu");
   },
-  data() { 
-    return { 
+  data() {
+    return {
       headers: [
         {
-          text: 'Имя',
-          align: 'start',
-          value: 'name',
+          text: "Имя",
+          align: "start",
+          value: "name",
         },
-        { text: 'Фамилия', value: 'surname' },
-        { text: 'Почта', value: 'email' },
+        { text: "Фамилия", value: "surname" },
+        { text: "Почта", value: "email" },
       ],
     };
   },
-  computed: mapGetters(["colleaguesList"]),
+  computed: mapGetters(["colleaguesList", "userData"]),
   methods: mapActions(["getColleagues"]),
 };
 </script>
