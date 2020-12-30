@@ -14,6 +14,10 @@
         Выйти
         <v-icon right>mdi-exit-to-app</v-icon>
       </v-btn>
+      <v-btn icon @click="changeTheme">
+        <v-icon class="mx-2" v-if="theme">mdi-brightness-4</v-icon>
+        <v-icon class="mx-2" v-else>mdi-brightness-7</v-icon>
+      </v-btn>
     </v-app-bar>
     <v-navigation-drawer
       v-if="userData.email"
@@ -50,52 +54,27 @@
           <v-divider />
           <v-list dense nav>
             <v-list-item-group color="white">
-              <v-list-item link to="/processes">
-                <v-list-item-icon class="item-icon">
-                  <v-icon>mdi-book-multiple</v-icon>
-                </v-list-item-icon>
-                <v-list-item-content>
-                  <v-list-item-title>Мои процессы</v-list-item-title>
-                </v-list-item-content>
-              </v-list-item>
-              <v-list-item link to="/solutions">
-                <v-list-item-icon class="item-icon">
-                  <v-icon>mdi-book-clock</v-icon>
-                </v-list-item-icon>
-                <v-list-item-content>
-                  <v-list-item-title>Требующие оброботки</v-list-item-title>
-                </v-list-item-content>
-              </v-list-item>
-              <v-list-item link to="/collegues">
-                <v-list-item-icon class="item-icon">
-                  <v-icon>mdi-account-multiple</v-icon>
-                </v-list-item-icon>
-                <v-list-item-content>
-                  <v-list-item-title>Коллеги</v-list-item-title>
-                </v-list-item-content>
-              </v-list-item>
-              <v-list-item link to="/process-create">
-                <v-list-item-icon class="item-icon">
-                  <v-icon>mdi-book-plus</v-icon>
-                </v-list-item-icon>
-                <v-list-item-content>
-                  <v-list-item-title>Создание процесса</v-list-item-title>
-                </v-list-item-content>
-              </v-list-item>
+              <tooltip
+                v-for="(item, i) in items"
+                :key="i"
+                :hint="item.hint"
+                :disabled="isOpen"
+                position="right"
+              >
+                <v-list-item class="mt-1" link :to="item.to">
+                  <v-list-item-icon class="item-icon">
+                    <v-icon>{{ item.icon }}</v-icon>
+                  </v-list-item-icon>
+                  <v-list-item-content>
+                    <v-list-item-title>{{ item.hint }}</v-list-item-title>
+                  </v-list-item-content>
+                </v-list-item>
+              </tooltip>
             </v-list-item-group>
           </v-list>
         </div>
         <div>
           <v-list dense nav>
-            <tooltip hint="Сменить тему" position="right">
-              <v-list-item class="mb-1" @click="changeTheme">
-                <v-list-item-icon class="ml-n2 item-icon">
-                  <v-icon class="mx-2" v-if="theme">mdi-brightness-4</v-icon>
-                  <v-icon class="mx-2" v-else>mdi-brightness-7</v-icon>
-                </v-list-item-icon>
-                <v-list-item-content> </v-list-item-content>
-              </v-list-item>
-            </tooltip>
             <v-divider></v-divider>
             <tooltip hint="Развернуть" :disabled="isOpen" position="right">
               <v-list-item class="mt-1" @click="openDrawer">
@@ -134,6 +113,28 @@ export default {
     return {
       isOpen: JSON.parse(localStorage.getItem("drawer")),
       width: window.innerWidth,
+      items: [
+        {
+          hint: "Мои процессы",
+          to: "/processes",
+          icon: "mdi-book-multiple",
+        },
+        {
+          hint: "Требующие оброботки",
+          to: "/solutions",
+          icon: "mdi-book-clock",
+        },
+        {
+          hint: "Коллеги",
+          to: "/collegues",
+          icon: "mdi-account-multiple",
+        },
+        {
+          hint: "Создание процесса",
+          to: "/process-create",
+          icon: "mdi-book-plus",
+        },
+      ],
     };
   },
   computed: {
