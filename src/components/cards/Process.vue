@@ -29,7 +29,7 @@
       <v-btn
         v-if="process.stages.slice(-1)[0].status === 'success'"
         target="_blank"
-        :href="`${baseURL}/processes/download?path=${process.pathToSheet}`"
+        :href="`${baseURL}/processes/download?path=/${process.pathToSheet}`"
         icon
       >
         <v-icon>mdi-file-download</v-icon>

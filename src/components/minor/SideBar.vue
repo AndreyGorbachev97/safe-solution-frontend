@@ -3,7 +3,7 @@
     <v-app-bar app class="appbar" elevation="0" color="primary" dark>
       <v-app-bar-nav-icon
         class="hidden-md-and-up"
-        @click.stop="openDrawer"
+        @click.stop="isOpen = true"
       ></v-app-bar-nav-icon>
       <v-spacer />
       <v-btn v-if="!userData.email" to="auth" text class="ma-2 white--text">
@@ -154,7 +154,6 @@ export default {
       localStorage.setItem("theme", JSON.stringify(theme));
     },
     updateWidth() {
-      console.log(window.innerWidth);
       this.width = window.innerWidth;
     },
     openDrawer() {
